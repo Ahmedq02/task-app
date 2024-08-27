@@ -1,0 +1,21 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment directories
+venv/
+.venv/
+
+# Django stuff
+db.sqlite3
+/media/
+/staticfiles/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Environment variables
+.env

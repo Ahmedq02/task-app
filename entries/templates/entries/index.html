@@ -1,0 +1,23 @@
+<h1>Task Entries</h1>
+<a href="{% url 'add_task' %}" class="button">Add a Task</a>
+<hr>
+
+{% if tasks %}
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>Email: </strong> {{ task.user_email }}<br>
+                <strong>Task Description: </strong> {{ task.task }}<br>
+                <strong>Due Date: </strong> {{ task.due_by }}<br>
+                <strong>Priority: </strong> {{ task.priority }}<br>
+                <strong>Is Urgent: </strong>{{ task.is_urgent }}<br>
+
+                <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
+                <a href="{% url 'delete_task' task.id %}" class="button">Delete</a>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Currently no tasks</p>
+{% endif %}
