@@ -6,6 +6,16 @@ from entries.models import Task
 
 # Create your views here.
 def display_dashboard(request):
+    # authentication
+    required_password = "ahm123"
+    auth = request.session.get("dash_auth", False)
+
+    if request.method == "POST":
+        password = request.POST.get("password")
+        if password == required_password:
+            auth = True
+            request.session["dash_auth"] = True
+
     today = datetime.today()
     next_30_days = today + timedelta(days=30)
     # get the tasks due in the next 30 days
@@ -29,8 +39,8 @@ def display_dashboard(request):
         count = Task.objects.filter(priority=i).count()
         pie_data.append(count)
     
-    # gets the high priority tasks that are due in the next 30 days
-    urgent_tasks = next_tasks.filter(priority=3).count()
+    # gets the urgent tasks that are due in the next 30 days
+    urgent_tasks = next_tasks.filter(is_urgent=True).count()
 
     tasks = Task.objects.all()
     
@@ -41,6 +51,7 @@ def display_dashboard(request):
         "pie_data": json.dumps(pie_data),
         "urgent_tasks": urgent_tasks,
         "tasks": tasks,
+        "auth": auth,
     }
 
     return render(request, "dashboard/index.html", context)

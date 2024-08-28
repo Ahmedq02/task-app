@@ -5,9 +5,20 @@ from .models import Task
 
 # Create your views here.
 def display_entries(request):
+    # authentication
+    required_password = "ahm123"
+    auth = request.session.get("entries_auth", False)
+
+    if request.method == "POST":
+        password = request.POST.get("password")
+        if password == required_password:
+            auth = True
+            request.session["entries_auth"] = True
+
     tasks = Task.objects.all()
     context = {
         "tasks": tasks,
+        "auth": auth
     }
 
     return render(request, "entries/index.html", context)
@@ -25,7 +36,9 @@ def add_task(request):
         form = TaskForm()
 
     
-    context = {"form": form}
+    context = {
+        "form": form,
+    }
     return render(request, "entries/add_task.html", context)
 
 def edit_task(request, task_id):
@@ -38,7 +51,9 @@ def edit_task(request, task_id):
     else:
         form = TaskForm(instance=task)
 
-    context = {"form": form}
+    context = {
+        "form": form,
+    }
     return render(request, "entries/edit_task.html", context)
 
 def delete_task(request, task_id):

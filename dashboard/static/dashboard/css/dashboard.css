@@ -17,6 +17,21 @@ hr {
     background-color: #B0B0B0;
 }
 
+a {
+    text-decoration: none;
+    color: #333333;
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+a:hover {
+    background-color: #757575;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 .heading {
     display: flex;
     flex-direction: column;
@@ -71,4 +86,19 @@ hr {
 .table-section table td {
     border: #333333 1px solid;
     padding: 1rem;
+}
+
+.pass-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.main-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1rem;
 }

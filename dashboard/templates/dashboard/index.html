@@ -15,8 +15,10 @@
     <div class="heading">
         <h1>Dashboard</h1>
     </div>
+    <a href="{% url 'home' %}" class="main-link">Home</a>
     <hr>
 
+    {% if auth %}
     <section class="chart-section">
         <div>
             <h2>Tasks due in the next 30 days</h2>
@@ -56,6 +58,16 @@
     </section>
     {% else %}
         <p>Currently no tasks</p>
+    {% endif %}
+
+    {% else %}
+    <form action="" method="post" class="pass-form">
+        {% csrf_token %}
+        <label for="password">Enter Password: </label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit">
+    </form>
+
     {% endif %}
     
 

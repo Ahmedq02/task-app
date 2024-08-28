@@ -85,3 +85,18 @@ a:visited {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
 }
+
+.pass-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem;
+}
+
+.main-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1rem;
+}
