@@ -1,2 +1,30 @@
-<h1>Dashboard</h1>
-<hr>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <hr>
+
+    <h2>Tasks due in the next 30 days</h2>
+    <canvas id="line_chart"></canvas>
+
+    <h2>Tasks priority distribution</h2>
+    <canvas id="pie_chart"></canvas>
+
+    <script type="text/javascript">
+        window.lineLabels = JSON.parse('{{ line_labels|escapejs }}');
+        window.lineData = JSON.parse('{{ line_data|escapejs }}');
+        window.pieLabels = JSON.parse('{{ pie_labels|escapejs }}');
+        window.pieData = JSON.parse('{{ pie_data|escapejs }}');
+    </script>
+
+    <script src="{% static 'dashboard/js/line_chart.js' %}"></script>
+    <script src="{% static 'dashboard/js/pie_chart.js' %}"></script>
+</body>
+</html>
