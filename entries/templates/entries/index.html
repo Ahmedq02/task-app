@@ -1,8 +1,15 @@
-<h1>Task Entries</h1>
-<a href="{% url 'add_task' %}" class="button">Add a Task</a>
-<hr>
-
-{% if tasks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task App</title>
+</head>
+<body>
+    <h1>Task Entries</h1>
+    <a href="{% url 'add_task' %}" class="button">Add a Task</a>
+    <hr>
+    {% if tasks %}
     <ul>
         {% for task in tasks %}
             <li>
@@ -18,6 +25,8 @@
             <hr>
         {% endfor %}
     </ul>
-{% else %}
-    <p>Currently no tasks</p>
-{% endif %}
+    {% else %}
+        <p>Currently no tasks</p>
+    {% endif %} 
+</body>
+</html>

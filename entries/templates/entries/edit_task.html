@@ -1,22 +1,32 @@
-<h1>Edit Task</h1>
-<hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task App</title>
+</head>
+<body>
+    <h1>Edit Task</h1>
+    <hr>
 
-<form action="" method="post">
-    {% csrf_token %}
+    <form action="" method="post">
+        {% csrf_token %}
 
-    <!-- Display non-field errors -->
-    {% if form.non_field_errors %}
-        <div class="error">
-            <ul>
-                {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+        <!-- Display non-field errors -->
+        {% if form.non_field_errors %}
+            <div class="error">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
+            
         
-    
-    <input type="submit">
-</form>
+        <input type="submit">
+    </form>
+</body>
+</html>

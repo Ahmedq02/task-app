@@ -17,6 +17,31 @@
     <h2>Tasks priority distribution</h2>
     <canvas id="pie_chart"></canvas>
 
+    <h2>Urgent Tasks Count: {{ urgent_tasks }}</h2>
+
+    {% if tasks %}
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Task Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Is Urgent</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.user_email }}</td>
+                <td>{{ task.task }}</td>
+                <td>{{ task.due_by }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.is_urgent }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Currently no tasks</p>
+    {% endif %}
+
     <script type="text/javascript">
         window.lineLabels = JSON.parse('{{ line_labels|escapejs }}');
         window.lineData = JSON.parse('{{ line_data|escapejs }}');
