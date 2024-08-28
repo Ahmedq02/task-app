@@ -1,32 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'entries/css/entries.css' %}">
     <title>Task App</title>
 </head>
 <body>
-    <h1>Task Entries</h1>
-    <a href="{% url 'add_task' %}" class="button">Add a Task</a>
+    <div class="heading">
+        <h1 class="entries">Task Entries</h1>
+        <a href="{% url 'add_task' %}" class="button">Add a Task</a>
+    </div>
     <hr>
     {% if tasks %}
-    <ul>
+    <ul class="task-cards">
         {% for task in tasks %}
-            <li>
-                <strong>Email: </strong> {{ task.user_email }}<br>
-                <strong>Task Description: </strong> {{ task.task }}<br>
-                <strong>Due Date: </strong> {{ task.due_by }}<br>
-                <strong>Priority: </strong> {{ task.priority }}<br>
-                <strong>Is Urgent: </strong>{{ task.is_urgent }}<br>
+                <li class="card">
+                    <p><strong>Email: </strong>{{ task.user_email }}</p>
+                    <p><strong>Task Description: </strong> {{ task.task }}
+                    <p><strong>Due Date: </strong> {{ task.due_by }}</p>
+                    <p><strong>Priority: </strong> {{ task.priority }}</p>
+                    <p><strong>Is Urgent: </strong>{{ task.is_urgent }}</p>
 
-                <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
-                <a href="{% url 'delete_task' task.id %}" class="button">Delete</a>
-            </li>
-            <hr>
+                    <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
+                    <a href="{% url 'delete_task' task.id %}" class="button">Delete</a>
+                </li>
         {% endfor %}
     </ul>
     {% else %}
         <p>Currently no tasks</p>
-    {% endif %} 
+    {% endif %}
 </body>
 </html>

@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #F7F7F7;
+    color: #333333;
+    height: 100vh;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #B0B0B0;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.heading .entries {
+    margin-bottom: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+a:hover {
+    background-color: #757575;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+a:visited {
+    color: #333333;
+}
+
+.task-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    border-radius: 0.5rem;
+}
+
+.form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    margin: 1rem;
+    gap: 1rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}

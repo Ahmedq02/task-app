@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "entries",
     "dashboard",
-    "task_app"
+    "task_app",
 ]
 
 MIDDLEWARE = [

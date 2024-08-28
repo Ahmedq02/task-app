@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-color: #F7F7F7;
+    color: #333333;
+    height: 100vh;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #B0B0B0;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.chart-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4rem;
+    padding: 1rem;
+    margin: 1rem;
+    height: 100%;
+}
+
+.chart-section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40%;
+    height: 70%;
+}
+
+.chart-section div canvas {
+    width: 100%;
+}
+
+.urgent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.table-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.table-section table {
+    border: #333333 1px solid;
+    border-collapse: collapse;
+    margin: 2rem;
+}
+
+.table-section table th,
+.table-section table td {
+    border: #333333 1px solid;
+    padding: 1rem;
+}
