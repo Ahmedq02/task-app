@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
 from .forms import TaskForm
 from .models import Task
+
 
 # Create your views here.
 def display_entries(request):
@@ -16,15 +16,12 @@ def display_entries(request):
             request.session["entries_auth"] = True
 
     tasks = Task.objects.all()
-    context = {
-        "tasks": tasks,
-        "auth": auth
-    }
+    context = {"tasks": tasks, "auth": auth}
 
     return render(request, "entries/index.html", context)
 
-def add_task(request):
 
+def add_task(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -35,11 +32,11 @@ def add_task(request):
     else:
         form = TaskForm()
 
-    
     context = {
         "form": form,
     }
     return render(request, "entries/add_task.html", context)
+
 
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -55,6 +52,7 @@ def edit_task(request, task_id):
         "form": form,
     }
     return render(request, "entries/edit_task.html", context)
+
 
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)

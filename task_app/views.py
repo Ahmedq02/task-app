@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # Create your views here.
 def home(request):
     request.session["entries_auth"] = False
