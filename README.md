@@ -8,15 +8,16 @@ A django web applicaiton for adding tasks and showing reports on the tasks.
 git clone https://github.com/Ahmedq02/task-app.git
 cd task-app
 
-2. Install pipenv if you haven't installed it
-pip install pipenv
+2. Install `poetry` if you haven't installed it
 
-3. Install dependencies with pipenv and activate the environment
-pipenv install
-pipenv shell
+3. Install dependencies with `poetry` and activate the environment
+
+`poetry install`
+`make activate`
 
 4. Apply migrations 
-python manage.py migrate
+`make migrate`
 
 5. Run the server, by default this will run at port 8000
-python manage.py runserver
+
+`make runserver`
