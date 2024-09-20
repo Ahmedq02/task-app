@@ -11,7 +11,6 @@
     <title>Task App</title>
 </head>
 <body>
-    {% if auth %}
     <div class="heading">
         <h1 class="entries">Task Entries</h1>
         <a href="{% url 'add_task' %}" class="button">Add a Task</a>
@@ -35,18 +34,6 @@
     </ul>
     {% else %}
         <p>Currently no tasks</p>
-    {% endif %}
-
-    {% else %}
-    <div class="heading">
-        <h1 class="entries">Task Entries</h1>
-    </div>
-    <form action="" method="post" class="pass-form">
-        {% csrf_token %}
-        <label for="password">Enter Password: </label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit">
-    </form>
     {% endif %}
 </body>
 </html>

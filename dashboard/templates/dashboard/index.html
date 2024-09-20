@@ -18,7 +18,6 @@
     <a href="{% url 'home' %}" class="main-link">Home</a>
     <hr>
 
-    {% if auth %}
     <section class="chart-section">
         <div>
             <h2>Tasks due in the next 30 days</h2>
@@ -60,16 +59,6 @@
         <p>Currently no tasks</p>
     {% endif %}
 
-    {% else %}
-    <form action="" method="post" class="pass-form">
-        {% csrf_token %}
-        <label for="password">Enter Password: </label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit">
-    </form>
-
-    {% endif %}
-    
 
     <script type="text/javascript">
         window.lineLabels = JSON.parse('{{ line_labels|escapejs }}');

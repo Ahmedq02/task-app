@@ -145,3 +145,6 @@ AUTHENTICATION_BACKENDS = [
     "users.backends.PasskeyBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+# Login URL
+LOGIN_URL = "login"

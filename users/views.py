@@ -1,21 +1,22 @@
-# from django.contrib.auth import login, logout
-# from django.shortcuts import redirect, render
-# from .forms import PasskeyForm
-# from .models import Passkey
-
-# def logout_view(request):
-#     logout(request)
-#     return redirect("/")
-
-# def login(request):
-#     if request.method == "POST":
-#         form = PasskeyForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect("/")
-#     else:
-#         form = PasskeyForm()
-#     return render(request, "users/login.html", {"form": form})
+from django.contrib import auth
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import authenticate
 
 
+def logout(request):
+    if request.method == "POST":
+        auth.logout(request)
+        return HttpResponseRedirect(reverse("home"))
+
+
+def login(request):
+    if request.method == "POST":
+        password = request.POST["password"]
+        user = authenticate(request, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect(request.GET.get("next", reverse("home")))
+    else:
+        return render(request, "users/login.html")
