@@ -12,12 +12,19 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
+# Initialize environment
+env = environ.Env()
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-*^vooq+#qn$!mgv@j3t2v6&ivfkt^yagtb5u89ce$s1@qm%1z&"
@@ -39,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "entries",
     "dashboard",
+    "users",
     "task_app",
 ]
 
@@ -125,3 +133,18 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Custom user model
+AUTH_USER_MODEL = "users.Passkey"
+
+# Standard user username
+STANDARD_USER_USERNAME = env("STANDARD_USER_USERNAME")
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    "users.backends.PasskeyBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+# Login URL
+LOGIN_URL = "login"

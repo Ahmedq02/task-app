@@ -1,26 +1,18 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 from .forms import TaskForm
 from .models import Task
 
 
-# Create your views here.
+@login_required
 def display_entries(request):
-    # authentication
-    required_password = "ahm123"
-    auth = request.session.get("entries_auth", False)
-
-    if request.method == "POST":
-        password = request.POST.get("password")
-        if password == required_password:
-            auth = True
-            request.session["entries_auth"] = True
-
     tasks = Task.objects.all()
-    context = {"tasks": tasks, "auth": auth}
+    context = {"tasks": tasks}
 
     return render(request, "entries/index.html", context)
 
 
+@login_required
 def add_task(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -38,6 +30,7 @@ def add_task(request):
     return render(request, "entries/add_task.html", context)
 
 
+@login_required
 def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     if request.method == "POST":
@@ -54,6 +47,7 @@ def edit_task(request, task_id):
     return render(request, "entries/edit_task.html", context)
 
 
+@login_required
 def delete_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
     task.delete()

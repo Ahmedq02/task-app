@@ -1,21 +1,13 @@
 from datetime import datetime, timedelta
-import json
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from entries.models import Task
 
+import json
 
-# Create your views here.
+
+@login_required
 def display_dashboard(request):
-    # authentication
-    required_password = "ahm123"
-    auth = request.session.get("dash_auth", False)
-
-    if request.method == "POST":
-        password = request.POST.get("password")
-        if password == required_password:
-            auth = True
-            request.session["dash_auth"] = True
-
     today = datetime.today()
     next_30_days = today + timedelta(days=30)
     # get the tasks due in the next 30 days
@@ -51,7 +43,6 @@ def display_dashboard(request):
         "pie_data": json.dumps(pie_data),
         "urgent_tasks": urgent_tasks,
         "tasks": tasks,
-        "auth": auth,
     }
 
     return render(request, "dashboard/index.html", context)
