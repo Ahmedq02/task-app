@@ -25,5 +25,4 @@ urlpatterns = [
     path("entries/", include("entries.urls")),
     path("dashboard/", include("dashboard.urls")),
     path("users/", include("users.urls")),
-    path("api/", include("api.urls")),
 ]
