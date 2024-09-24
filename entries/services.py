@@ -1,30 +1,33 @@
 from typing import Optional
+from ninja import PatchDict
 from .models import Task
-from .schemas import TaskIn
-from django.core.exceptions import ObjectDoesNotExist
+from .schemas import TaskIn, TaskListFilters
 
 
 class TaskService:
-    def get(self, id: int) -> Optional[Task]:
-        return Task.objects.get(id=id)
+    @staticmethod
+    async def get(id: int) -> Optional[Task]:
+        return await Task.objects.aget(id=id)
 
-    def list(self, filters):
-        pass
+    @staticmethod
+    async def list(filters: TaskListFilters) -> list[Task]:
+        return await list(Task.objects.filter(**filters.dict()))
 
-    def create(self, schema: TaskIn) -> Task:
-        return Task.objects.acreate(**schema.dict())
+    @staticmethod
+    async def create(schema: TaskIn) -> Task:
+        return await Task.objects.acreate(**schema.dict())
 
-    def patch(self, id: int, schema: TaskIn) -> Task:
-        task = self.get(id=id)
-        if not task:
-            raise ObjectDoesNotExist("Task does not exist")
+    @staticmethod
+    async def patch(id: int, schema: PatchDict[TaskIn]) -> Task:
+        task = await Task.objects.aget(id=id)
 
-        for key, value in schema.dict().items():
+        for key, value in schema.items():
             setattr(task, key, value)
 
-        task.save()
+        await task.asave()
         return task
 
-    def delete(self, id: int):
-        task = self.get(id=id)
-        task.delete()
+    @staticmethod
+    async def delete(id: int):
+        task = await Task.objects.aget(id=id)
+        await task.adelete()
