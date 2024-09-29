@@ -1,5 +1,6 @@
 from typing import Optional
-from ninja import PatchDict
+from asgiref.sync import sync_to_async
+from ninja import PatchDict, Query
 from .models import Task
 from .schemas import TaskIn, TaskListFilters
 
@@ -10,8 +11,10 @@ class TaskService:
         return await Task.objects.aget(id=id)
 
     @staticmethod
-    async def list(filters: TaskListFilters) -> list[Task]:
-        return await list(Task.objects.filter(**filters.dict()))
+    async def list(filters: TaskListFilters = Query(...)) -> list[Task]:
+        tasks = await sync_to_async(Task.objects.all)()
+        tasks = await sync_to_async(filters.filter)(tasks)
+        return await sync_to_async(list)(tasks)
 
     @staticmethod
     async def create(schema: TaskIn) -> Task:

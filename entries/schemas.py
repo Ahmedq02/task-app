@@ -1,6 +1,6 @@
 from ninja import ModelSchema, FilterSchema, Field
 from typing import Optional
-from django.utils.timezone import datetime, timedelta
+from django.utils.timezone import datetime
 from .models import Task
 
 
@@ -17,8 +17,6 @@ class TaskOut(ModelSchema):
 
 
 class TaskListFilters(FilterSchema):
-    start: Optional[datetime] = Field(datetime.now(), q="due_by__gte")
-    end: Optional[datetime] = Field(
-        datetime.now() + timedelta(days=30), q="due_by__lte"
-    )
-    priority: Optional[int]
+    due_by__gte: Optional[datetime] = Field(None, alias="start", ignore_none=True)
+    due_by__lte: Optional[datetime] = Field(None, alias="end", ignore_none=True)
+    priority: Optional[int] = Field(None, ignore_none=True)

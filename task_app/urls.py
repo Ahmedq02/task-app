@@ -18,6 +18,9 @@ Including another URLconf
 from . import views
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from .api_v0 import api as api_v0
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,4 +28,5 @@ urlpatterns = [
     path("entries/", include("entries.urls")),
     path("dashboard/", include("dashboard.urls")),
     path("users/", include("users.urls")),
-]
+    path("api/v0/", api_v0.urls),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
