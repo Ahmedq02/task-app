@@ -29,3 +29,5 @@ class APIClient {
     }
     
 }
+
+export { APIClient, Configuration };

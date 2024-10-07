@@ -48,7 +48,7 @@ a:visited {
     color: #333333;
 }
 
-.task-cards {
+#task-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
