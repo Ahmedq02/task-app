@@ -6,28 +6,12 @@ from .models import Task
 
 @login_required
 def display_entries(request):
-    tasks = Task.objects.all()
-    context = {"tasks": tasks}
-
-    return render(request, "entries/index.html", context)
+    return render(request, "entries/index.html")
 
 
 @login_required
 def add_task(request):
-    if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/entries/")
-        else:
-            print("invalid form")
-    else:
-        form = TaskForm()
-
-    context = {
-        "form": form,
-    }
-    return render(request, "entries/add_task.html", context)
+    return render(request, "entries/add_task.html")
 
 
 @login_required

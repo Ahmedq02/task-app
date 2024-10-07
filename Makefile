@@ -1,7 +1,7 @@
-runserver:
+run:
 	poetry run python manage.py runserver
 
-runasgiserver:
+runasgi:
 	poetry run uvicorn task_app.asgi:application --reload
 
 migrate:
