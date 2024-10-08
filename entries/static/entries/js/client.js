@@ -20,10 +20,10 @@ class APIClient {
 
         const request = new Request(url, {
             method: method,
-            headers: {
+            headers: new Headers({
                 ...this.configuration.headers,
                 ...headers,
-            },
+            }),
             body: body,
         });
 

@@ -1,7 +1,7 @@
 class Priority {
-    static LOW = new Priority(0, 'Low');
-    static MEDIUM = new Priority(1, 'Medium');
-    static HIGH = new Priority(2, 'High');
+    static LOW = new Priority(1, 'Low');
+    static MEDIUM = new Priority(2, 'Medium');
+    static HIGH = new Priority(3, 'High');
 
     constructor(intValue, stringValue) {
         this.intValue = intValue;
@@ -10,11 +10,11 @@ class Priority {
 
     static fromInt(intValue) {
         switch (intValue) {
-            case 0:
-                return Priority.LOW;
             case 1:
-                return Priority.MEDIUM;
+                return Priority.LOW;
             case 2:
+                return Priority.MEDIUM;
+            case 3:
                 return Priority.HIGH;
             default:
                 throw new Error('Invalid priority value');
@@ -61,14 +61,14 @@ class Task {
     }
 
     toJson() {
-        return {
+        return JSON.stringify({
             id: this.id,
             user_email: this.email,
             task: this.task,
-            due_by: this.dueBy.toUTCString(),
+            due_by: this.dueBy.toISOString(),
             priority: this.priority.toJson(),
             is_urgent: this.isUrgent,
-        };
+        });
     }
 }
 
@@ -83,14 +83,14 @@ class CreateTask {
     }
 
     toJson() {
-        return {
+        return JSON.stringify({
             user_email: this.email,
             task: this.task,
-            due_by: this.dueBy.toUTCString(),
+            due_by: this.dueBy.toISOString(),
             priority: this.priority.toJson(),
             is_urgent: this.isUrgent,
-        };
+        });
     }
 }
 
-export { Task, CreateTask };
+export { Task, CreateTask, Priority };

@@ -1,4 +1,5 @@
 import { Task } from '../models/task.js';
+import { APIClient } from '../client.js';
 
 class TaskService {
 
@@ -15,11 +16,12 @@ class TaskService {
 
         const response = await this.client.do(
             'GET', 
-            './tasks', 
+            './tasks/', 
             queryParams,
         );
 
         if (!response.ok) {
+            console.error(response);
             throw new Error('Failed to fetch tasks');
         }
 
@@ -47,14 +49,16 @@ class TaskService {
     async createTask(task) {
         const response = await this.client.do(
             'POST', 
-            './tasks',
-            body = task.toJson(),
-            headers = {
+            './tasks/',
+            undefined,
+            task.toJson(),
+            {
                 'Content-Type': 'application/json',
             },
         );
 
         if (!response.ok) {
+            console.error(response);
             throw new Error('Failed to create task');
         }
 
@@ -78,13 +82,15 @@ class TaskService {
         const response = await this.client.do(
             'PUT', 
             `./tasks/${task.id}`,
-            body = task.toJson(),
-            headers = {
+            undefined,
+            task.toJson(),
+            {
                 'Content-Type': 'application/json',
             },
         );
 
         if (!response.ok) {
+            console.error(response);
             throw new Error('Failed to update task');
         }
 
