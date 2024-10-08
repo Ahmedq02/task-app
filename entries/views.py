@@ -11,7 +11,11 @@ def display_entries(request):
 
 @login_required
 def add_task(request):
-    return render(request, "entries/add_task.html")
+    form = TaskForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "entries/add_task.html", context)
 
 
 @login_required

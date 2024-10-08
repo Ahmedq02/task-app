@@ -11,8 +11,9 @@ class TaskCard {
 
         card.innerHTML = `
             <h5 class="card-title">${this.task.task}</h5>
-            <p class="card-text">Due by: ${this.task.dueBy}</p>
-            <p class="card-text">Priority: ${this.task.priority}</p>
+            <p class="card-text">Due by: ${this.task.dueBy.toLocaleString()}</p>
+            <p class="card-text">Email: ${this.task.email}</p>
+            <p class="card-text">Priority: ${this.task.priority.toString()}</p>
             <p class="card-text">Urgent: ${this.task.isUrgent}</p>
             <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
             <button class="button button-danger">Delete</button>
@@ -55,7 +56,7 @@ const onload = async () => {
         'X-CSRFToken': '{{ csrf_token }}',
     }));
 
-    loadTasks(client, taskCards);
+    loadTasks(client);
 
     document.addEventListener('taskDeleted', async (event) => {
         await deleteTask(event.detail.taskId, client);
