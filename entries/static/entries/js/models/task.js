@@ -1,8 +1,8 @@
 class Task {
-    constructor(id, email, description, dueBy, priority, isUrgent) {
+    constructor(id, email, task, dueBy, priority, isUrgent) {
         this.id = id;
         this.email = email;
-        this.description = description;
+        this.task = task;
         this.dueBy = dueBy;
         this.priority = priority;
         this.isUrgent = isUrgent;
@@ -12,7 +12,7 @@ class Task {
         return new Task(
             json.id,
             json.email,
-            json.description,
+            json.task,
             json.due_by,
             json.priority,
             json.is_urgent,
@@ -23,10 +23,12 @@ class Task {
         return {
             id: this.id,
             email: this.email,
-            description: this.description,
+            task: this.task,
             due_by: this.dueBy,
             priority: this.priority,
             is_urgent: this.isUrgent,
         };
     }
 }
+
+export { Task };

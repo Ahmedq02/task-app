@@ -1,5 +1,7 @@
+import { TaskService } from './services/task.js';
+
 class Configuration {
-    constructor(basePath = '/', headers = {}) {
+    constructor(basePath = 'http://localhost:8000/api/v0/', headers = {}) {
         this.basePath = basePath;
         this.headers = headers;
     }

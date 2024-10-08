@@ -17,23 +17,9 @@
     </div>
     <a href="{% url 'home' %}" class="main-link">Home</a>
     <hr>
-    {% if tasks %}
-    <ul id="task-cards" class="task-cards">
-        {% for task in tasks %}
-                <li class="card">
-                    <p><strong>Email: </strong>{{ task.user_email }}</p>
-                    <p><strong>Task Description: </strong> {{ task.task }}
-                    <p><strong>Due Date: </strong> {{ task.due_by }}</p>
-                    <p><strong>Priority: </strong> {{ task.priority }}</p>
-                    <p><strong>Is Urgent: </strong>{{ task.is_urgent }}</p>
-
-                    <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
-                    <a href="{% url 'delete_task' task.id %}" class="button">Delete</a>
-                </li>
-        {% endfor %}
+    <ul id="task-cards">
     </ul>
-    {% else %}
-        <p>Currently no tasks</p>
-    {% endif %}
+
+    <script type="module" src="{% static 'entries/js/index.js' %}"></script>
 </body>
 </html>

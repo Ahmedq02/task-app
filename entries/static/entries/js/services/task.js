@@ -1,3 +1,5 @@
+import { Task } from '../models/task.js';
+
 class TaskService {
 
     constructor(client) {
@@ -13,7 +15,7 @@ class TaskService {
 
         const response = await this.client.do(
             'GET', 
-            '/tasks/', 
+            './tasks', 
             queryParams,
         );
 
@@ -27,10 +29,25 @@ class TaskService {
         return items.map(item => Task.fromJson(item));
     }
 
+    async getTask(taskId) {
+        const response = await this.client.do(
+            'GET', 
+            `./tasks/${taskId}`,
+        );
+
+        if (!response.ok) {
+            console.error(response);
+            throw new Error('Failed to fetch task');
+        }
+
+        const json = await response.json();
+        return Task.fromJson(json);
+    }
+
     async createTask(task) {
         const response = await this.client.do(
             'POST', 
-            '/tasks/',
+            './tasks',
             body = task.toJson(),
             headers = {
                 'Content-Type': 'application/json',
@@ -48,10 +65,11 @@ class TaskService {
     async deleteTask(taskId) {
         const response = await this.client.do(
             'DELETE', 
-            `/tasks/${taskId}/`,
+            `./tasks/${taskId}`,
         );
 
         if (!response.ok) {
+            console.error(response);
             throw new Error('Failed to delete task');
         }
     }
@@ -59,7 +77,7 @@ class TaskService {
     async updateTask(task) {
         const response = await this.client.do(
             'PUT', 
-            `/tasks/${task.id}/`,
+            `./tasks/${task.id}`,
             body = task.toJson(),
             headers = {
                 'Content-Type': 'application/json',
@@ -74,3 +92,5 @@ class TaskService {
         return Task.fromJson(json);
     }
 }
+
+export { TaskService };
