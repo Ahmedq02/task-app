@@ -9,7 +9,6 @@ class TaskCard {
         let editURL = document.getElementById('edit-url').textContent;
         editURL = editURL.replace("0", id);
 
-        console.log(editURL);
         return editURL;
     }
 
@@ -51,11 +50,8 @@ const loadTasks = async (client) => {
 };
 
 const deleteTask = async (id, client) => {
-    console.log(id);
-    console.log(await client.tasks.getTask(id));
-
     await client.tasks.deleteTask(id);
-    loadTasks();
+    loadTasks(client);
 };
 
 

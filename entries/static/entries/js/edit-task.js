@@ -20,6 +20,7 @@ class TaskForm {
 
         this.form.addEventListener('submit', this.submit.bind(this));
     
+        console.log(this.taskId);
         if(this.taskId !== undefined && this.taskId !== null) {
             this.loadTask(taskId);
         }
@@ -85,7 +86,7 @@ class TaskForm {
 const onload = () => {
     let taskId = document.getElementById("task-id").textContent;
 
-    if(taskId !== "") {
+    if(typeof taskId !== "string") {
         taskId = parseInt(taskId);
     } else {
         taskId = undefined;
