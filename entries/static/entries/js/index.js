@@ -5,6 +5,14 @@ class TaskCard {
         this.task = task;
     }
 
+    getEditURL(id) {
+        let editURL = document.getElementById('edit-url').textContent;
+        editURL = editURL.replace("0", id);
+
+        console.log(editURL);
+        return editURL;
+    }
+
     render() {
         const card = document.createElement('li');
         card.className = 'card';
@@ -15,7 +23,7 @@ class TaskCard {
             <p class="card-text">Email: ${this.task.email}</p>
             <p class="card-text">Priority: ${this.task.priority.toString()}</p>
             <p class="card-text">Urgent: ${this.task.isUrgent}</p>
-            <a href="{% url 'edit_task' task.id %}" class="button">Edit</a>
+            <a href="${this.getEditURL(this.task.id)}" class="button">Edit</a>
             <button class="button button-danger">Delete</button>
         `;
 

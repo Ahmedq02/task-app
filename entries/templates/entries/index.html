@@ -19,7 +19,10 @@
     <hr>
     <ul id="task-cards">
     </ul>
+    
+    <script type="module" src="{% static 'entries/js/index.js' %}" defer></script>
+    <script type="application/json" id="edit-url">{% url 'edit_task' 0 %}</script>
 
-    <script type="module" src="{% static 'entries/js/index.js' %}"></script>
+
 </body>
 </html>

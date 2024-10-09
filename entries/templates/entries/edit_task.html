@@ -1,41 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{% static 'entries/css/entries.css' %}">
     <title>Task App</title>
 </head>
+
 <body>
     <div class="heading">
-        <h1>Edit Task</h1>
+        <h1>Add a Task</h1>
     </div>
     <a href="{% url 'home' %}" class="main-link">Home</a>
     <hr>
+
     <section class="form-section">
-    <form action="" method="post" class="task-form">
-        {% csrf_token %}
+        <form action="" method="post" class="task-form">
+            {% csrf_token %}
+            <p>
+                <label for="id_user_email">User email:</label>
+                <input type="email" name="user_email" maxlength="100" required="" id="id_user_email">
+            </p>
 
-        <!-- Display non-field errors -->
-        {% if form.non_field_errors %}
-            <div class="error">
-                <ul>
-                    {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
 
-        {{ form.as_p }}
-            
-        
-        <input type="submit">
-    </form>
+            <p>
+                <label for="id_task">Task:</label>
+                <input type="text" name="task" maxlength="100" required="" id="id_task">
+            </p>
+
+
+            <p>
+                <label for="id_due_by">Due by:</label>
+                <input type="datetime-local" name="due_by" required="" id="id_due_by">
+            </p>
+
+
+            <p>
+                <label for="id_priority">Priority:</label>
+                <select name="priority" id="id_priority">
+                    <option value="1" selected="">Low</option>
+
+                    <option value="2">Medium</option>
+
+                    <option value="3">High</option>
+
+                </select>
+            </p>
+
+
+            <p>
+                <label for="id_is_urgent">Is urgent:</label>
+                <input type="checkbox" name="is_urgent" id="id_is_urgent">
+            </p>
+
+            <input type="submit">
+        </form>
     </section>
+
+    <script type="module" src="{% static 'entries/js/add-task.js' %}" defer></script>
+    <script type="application/json" id="entries-url">
+        {% url 'entries' %}
+    </script>
+    {{ task_id|json_script:"task-id" }}
 </body>
+
 </html>
