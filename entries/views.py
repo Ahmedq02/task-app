@@ -18,3 +18,8 @@ def edit_task(request, task_id):
         "task_id": task_id,
     }
     return render(request, "entries/edit_task.html", context)
+
+
+@login_required
+def dashboard(request):
+    return render(request, "entries/dashboard.html")
