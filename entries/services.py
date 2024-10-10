@@ -14,7 +14,7 @@ class TaskService:
     async def list(filters: TaskListFilters = Query(...)) -> list[Task]:
         tasks = await sync_to_async(Task.objects.all)()
         tasks = await sync_to_async(filters.filter)(tasks)
-        return await sync_to_async(list)(tasks)
+        return await sync_to_async(list)(tasks.order_by("due_by"))
 
     @staticmethod
     async def create(schema: TaskIn) -> Task:

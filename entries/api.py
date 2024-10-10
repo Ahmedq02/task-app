@@ -29,10 +29,10 @@ async def get_task(request, task_id: int):
     try:
         return await TaskService.get(task_id)
     except Task.DoesNotExist:
-        return 404
+        return 404, None
 
 
-@router.post("/", response=TaskOut)
+@router.post("/", response={201: TaskOut})
 async def create_task(request, payload: TaskIn):
     return await TaskService.create(payload)
 
@@ -42,13 +42,13 @@ async def update_task(request, task_id: int, payload: PatchDict[TaskIn]):
     try:
         return await TaskService.patch(task_id, payload)
     except Task.DoesNotExist:
-        return 404
+        return 404, None
 
 
 @router.delete("/{task_id}", response={204: None, 404: None})
 async def delete_task(request, task_id: int):
     try:
         await TaskService.delete(task_id)
-        return 204
+        return 204, None
     except Task.DoesNotExist:
-        return 404
+        return 404, None
