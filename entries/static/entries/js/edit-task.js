@@ -84,16 +84,12 @@ class TaskForm {
 }
 
 const onload = () => {
-    let taskId = document.getElementById("task-id").textContent;
-
-    if(typeof taskId !== "string") {
-        taskId = parseInt(taskId);
-    } else {
+    let taskId = parseInt(document.getElementById("task-id").textContent);
+    if(Number.isNaN(taskId)) {
         taskId = undefined;
     }
 
     const _ = new TaskForm(taskId);
-
 
     const entriesURL = document.getElementById('entries-url').textContent;
     document.addEventListener('task-submitted', () => {
