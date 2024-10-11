@@ -14,6 +14,11 @@
     <div class="heading">
         <h1>Task App</h1>
     </div>
+
+    <form action="{% url 'logout' %}" method="post" class="pass-form">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
     
     <hr>
 

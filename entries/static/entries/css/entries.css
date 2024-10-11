@@ -29,26 +29,7 @@ hr {
     margin-bottom: 2rem;
 }
 
-a {
-    text-decoration: none;
-    color: #333333;
-    background-color: #FFFFFF;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-a:hover {
-    background-color: #757575;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-a:visited {
-    color: #333333;
-}
-
-.task-cards {
+#task-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -99,4 +80,28 @@ a:visited {
     right: 0;
     top: 0;
     margin: 1rem;
+}
+
+.button {
+    font-size: 0.9rem;
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    color: #333333;
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #757575;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-danger:hover {
+    background-color: #FF0000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
