@@ -1,10 +1,10 @@
 import { TaskService } from './services/task.js';
 
 class Configuration {
-    // TODO: Change this URL to relative URL
     constructor(basePath = undefined, headers = {}) {
         if(basePath === undefined) {
-            basePath = window.location.origin + '/api/v0';
+            basePath = window.location.origin + '/api/v0/';
+            console.log(basePath);
         }
         this.basePath = basePath;
         this.headers = headers;
