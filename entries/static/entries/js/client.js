@@ -4,7 +4,7 @@ class Configuration {
     // TODO: Change this URL to relative URL
     constructor(basePath = undefined, headers = {}) {
         if(basePath === undefined) {
-            basePath = window.location.origin;
+            basePath = window.location.origin + '/api/v0';
         }
         this.basePath = basePath;
         this.headers = headers;
