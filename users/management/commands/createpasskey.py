@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
         # Get the passkey of standard user from environment variables
         password = os.getenv("PASSKEY")
-        username = os.getenv("USERNAME")
+        username = os.getenv("STANDARD_USER_USERNAME")
 
         # Create standard user
         if not User.objects.filter(username=username).exists():
