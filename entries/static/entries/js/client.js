@@ -4,7 +4,6 @@ class Configuration {
     constructor(basePath = undefined, headers = {}) {
         if(basePath === undefined) {
             basePath = window.location.origin + '/api/v0/';
-            console.log(basePath);
         }
         this.basePath = basePath;
         this.headers = headers;
