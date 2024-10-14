@@ -12,8 +12,12 @@ class Command(BaseCommand):
 
         # Get the passkey of standard user from environment variables
         password = os.getenv("PASSKEY")
+        username = os.getenv("USERNAME")
 
         # Create standard user
-        User.objects.create_user(password=password)
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_user(password=password)
+            self.stdout.write(self.style.SUCCESS("Passkey created successfully"))
 
-        self.stdout.write(self.style.SUCCESS("Passkey created successfully"))
+        else:
+            self.stdout.write(self.style.SUCCESS("Passkey already exists"))

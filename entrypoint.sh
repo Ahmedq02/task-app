@@ -7,6 +7,10 @@ set -e
 echo "Running database migrations..."
 make migrate
 
+# Create a passkey
+echo "Creating a passkey..."
+make createpasskey
+
 # Collect static files.
 echo "Collecting static files..."
 make collectstatic

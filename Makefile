@@ -7,6 +7,9 @@ migrate:
 makemigrations:
 	poetry run python manage.py makemigrations
 
+make createpasskey:
+	poetry run python manage.py createpasskey
+
 collectstatic:
 	poetry run python manage.py collectstatic --noinput
 
