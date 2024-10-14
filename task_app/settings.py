@@ -33,7 +33,7 @@ APP_DOMAIN = env("APP_DOMAIN")
 ALLOWED_HOSTS = {APP_DOMAIN, "localhost", "127.0.0.1"}
 ALLOWED_HOSTS = list(ALLOWED_HOSTS)
 
-CSRF_ALLOWED_ORIGINS = [f"https://{APP_DOMAIN}"]
+CSRF_TRUESTED_ORIGINS = [f"https://{APP_DOMAIN}"]
 
 
 # Application definition
