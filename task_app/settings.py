@@ -18,10 +18,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # Initialize environment
 env = environ.Env()
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
@@ -32,7 +28,12 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+# Allowed hosts
+APP_DOMAIN = env("APP_DOMAIN")
+ALLOWED_HOSTS = {APP_DOMAIN, "localhost", "127.0.0.1"}
+ALLOWED_HOSTS = list(ALLOWED_HOSTS)
+
+CSRF_TRUSTED_ORIGINS = [f"https://{APP_DOMAIN}"]
 
 
 # Application definition
@@ -94,6 +95,9 @@ DATABASES = {
     }
 }
 
+DB_SSL_MODE = env("DB_SSL_MODE")
+if DB_SSL_MODE:
+    DATABASES["default"]["OPTIONS"] = {"sslmode": DB_SSL_MODE}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

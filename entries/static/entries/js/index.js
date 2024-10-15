@@ -56,9 +56,7 @@ const deleteTask = async (id, client) => {
 
 
 const onload = async () => {
-    const client = new APIClient(new Configuration(undefined, {
-        'X-CSRFToken': '{{ csrf_token }}',
-    }));
+    const client = new APIClient(new Configuration());
 
     loadTasks(client);
 

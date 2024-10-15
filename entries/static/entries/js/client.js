@@ -1,7 +1,10 @@
 import { TaskService } from './services/task.js';
 
 class Configuration {
-    constructor(basePath = 'http://localhost:8000/api/v0/', headers = {}) {
+    constructor(basePath = undefined, headers = {}) {
+        if(basePath === undefined) {
+            basePath = window.location.origin + '/api/v0/';
+        }
         this.basePath = basePath;
         this.headers = headers;
     }

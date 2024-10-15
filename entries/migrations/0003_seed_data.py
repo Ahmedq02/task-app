@@ -24,9 +24,8 @@ def unload_csv_data(apps, schema_editor):
     with open(file_path, "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            id = row["id"]
-            task = Task.objects.get(id=id)
-            task.delete()
+            if Task.objects.filter(**row).exists():
+                Task.objects.filter(**row).delete()
 
 
 class Migration(migrations.Migration):
